@@ -17,7 +17,7 @@ Airplane.prototype.takeOff = function () {
 };
 Airplane.prototype.land = function () {
   this.isFlying = false;
-};
+};   
 
 
 /*
@@ -59,6 +59,8 @@ Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
 }
 
+
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -74,19 +76,16 @@ Person.prototype.toString = function() {
 */
 
 function Car(model, milesPerGallon) {
-  this.tank = 0,
-  this.odometer = 0,
-  this.model = model,
-  this.milesPerGallon = milesPerGallon
+    this.tank = 0,
+    this.odometer = 0,
+    this.model = model,
+    this.milesPerGallon = milesPerGallon
 // why do we also need to put the attributes below the initialized instances/arguments (tank, odometer, why are these not arguments?)
 }
 
 Car.prototype.fill = function(gallons) {
   this.tank += gallons
-  // why +=????? 
 }
-
-
 
 /*
   TASK 3
@@ -96,24 +95,33 @@ Car.prototype.fill = function(gallons) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby(name, age, favoriteToy) {
-  this.name = name,
-  this.age = age,
-  this.favoriteToy = favoriteToy
-  };
+  Person.call(this, name, age) 
+    // this.name = name,
+    // this.age = age,
+    this.favoriteToy = favoriteToy
 }
 
-Person.prototype.play() = function() {
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
 }
+
+
+  // Baby.prototype.play() = function() {
+  // //   return `Playing with ${this.favoriteToy}`;
+  // // }
+
+  // baby.prototype = Object.create(Person.prototype);
+
 
 /* 
   TASK 4
 
-  In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  In your own words explain the four principles for the "this" keyword below: this keyword specifies where a function is invoked
+  1. global: refers to the window/console
+  2. implicit: refers to specific object you are calling method on, uses dot-notation
+  3. new-binding: a new instance
+  4. explicit: pointing to something with a different value, uses .call(), .apply(), .bind()
 */
 
 
